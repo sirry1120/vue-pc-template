@@ -45,18 +45,18 @@ const vueCliConfiguration = {
   outputDir: "./dist", //当运行 vue-cli-service build 时生成的生产环境构建文件的目录。注意目标目录在构建之前会被清除 (构建时传入 --no-clean 可关闭该行为)。
   productionSourceMap: process.env.NODE_ENV === "development", //如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。
   lintOnSave: false, //是否在开发环境下通过 eslint-loader 在每次保存时 lint 代码。这个值会在 @vue/cli-plugin-eslint 被安装之后生效。
-  devServer: {
-    proxy: {
-        [process.env.VUE_APP_BASE_API]:{
-            target:'',//目标代理接口地址
-            changeOrigin:true,//是否开启代理
-            // ws: true, // 是否启用websockets
-            pathRewrite: { //  /api开头的请求会去到target下请求
-                '^/api': ''        //   替换/api 为空字符
-              }
-        }
-    }
-  },
+//   devServer: {
+//     proxy: {
+//         [process.env.VUE_APP_BASE_API]:{
+//             target:'',//目标代理接口地址
+//             changeOrigin:true,//是否开启代理
+//             // ws: true, // 是否启用websockets
+//             pathRewrite: { //  /api开头的请求会去到target下请求
+//                 '^/api': ''        //   替换/api 为空字符
+//               }
+//         }
+//     }
+//   },
   configureWebpack:config=>{
       config.name = title
       //添加别名
