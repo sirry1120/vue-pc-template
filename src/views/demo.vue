@@ -155,7 +155,8 @@ export default {
   .left {
     width: 15%;
     height: 100%;
-    background-color: green;
+    border-right:1px solid black;
+    // background-color: green;
     .el-tabs {
         margin-left:20px;
       .switch {
