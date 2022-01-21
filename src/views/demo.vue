@@ -75,6 +75,7 @@ export default {
       value5: false,
       value6: false,
       imgUrl: '',
+      activeName:'first',
       valueLabel1: '开关1成功',
       valueLabel2: '开关2成功',
       valueLabel3: '开关3失败',
