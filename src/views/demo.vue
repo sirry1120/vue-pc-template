@@ -2,40 +2,75 @@
 <template>
   <div class="page">
     <div class="left">
-      <span>操作台</span>
-      <el-tabs v-model="activeName"
+      <!-- <span>操作台</span> -->
+      <!-- <el-tabs class="demo-tabs"
+        v-model="activeName"
         @tab-click="handleClick">
-        <el-tab-pane label="配置一"
+        <el-tab-pane label="人脸匿名"
           name="first">
-          <div class="switch">
-            <!-- 开关 -->
-            <el-switch v-model="value1"
-              :inactive-text="valueLabel1">
-            </el-switch>
-            <el-switch v-model="value2"
-              :inactive-text="valueLabel2">
-            </el-switch>
-            <el-switch v-model="value3"
-              :inactive-text="valueLabel3">
-            </el-switch>
-          </div>
+<el-radio-group v-model="radio">
+          <el-radio-button 
+            label="1">数据集</el-radio-button>
+          <el-radio-button
+            label="2">开放场景</el-radio-button>
+</el-radio-group>
         </el-tab-pane>
-        <el-tab-pane label="配置二"
+        <el-tab-pane label="身份保留"
           name="second">
-          <div class="switch">
-            <!-- 开关 -->
-            <el-switch v-model="value4"
-              :inactive-text="valueLabel4">
-            </el-switch>
-            <el-switch v-model="value5"
-              :inactive-text="valueLabel5">
-            </el-switch>
-            <el-switch v-model="value6"
-              :inactive-text="valueLabel6">
-            </el-switch>
-          </div>
+
         </el-tab-pane>
-      </el-tabs>
+      </el-tabs> -->
+
+      <el-radio-group style="margin-top:20px;"
+        v-model="radio">
+        <el-radio-button label="1">人脸匿名</el-radio-button>
+        <el-radio-button label="2">身份保留</el-radio-button>
+      </el-radio-group>
+      <div v-show="radio==='1'">
+        <el-switch v-model="value1"
+          style="margin-top:20px;"
+          active-text="数据集"
+          inactive-text="开放场景">
+        </el-switch>
+        <div v-show="value1"
+          style="margin-top:20px;">
+          <el-radio v-model="radio1"
+            label="1">Celeba-HQ</el-radio>
+          <el-radio v-model="radio1"
+            label="2">Vggface-HQ</el-radio>
+        </div>
+      </div>
+
+      <div v-show="radio==='2'">
+        <div class="mg-top-20">局部属性</div>
+        <div class="mg-top-20">
+          <el-radio v-model="radio3"
+            label="1">大鼻子</el-radio>
+          <el-radio v-model="radio3"
+            label="2">尖鼻子</el-radio>
+        </div>
+        <div class="mg-top-20">
+          <el-radio v-model="radio4"
+            label="1">柳叶眉</el-radio>
+          <el-radio v-model="radio4"
+            label="2">浓眉</el-radio>
+        </div>
+        <div class="mg-top-20">
+          <el-checkbox-group v-model="checkList">
+            <el-checkbox label="大嘴唇"></el-checkbox>
+            <el-checkbox label="眼袋"></el-checkbox>
+            <el-checkbox label="口红"></el-checkbox>
+          </el-checkbox-group>
+        </div>
+        <div class="mg-top-20">全局属性</div>
+                <div class="mg-top-20">
+          <el-checkbox-group v-model="checkList">
+            <el-checkbox label="性别"></el-checkbox>
+            <el-checkbox label="年龄"></el-checkbox>
+            <el-checkbox label="微笑"></el-checkbox>
+          </el-checkbox-group>
+        </div>
+      </div>
 
     </div>
     <div class="right">
@@ -68,6 +103,11 @@
 export default {
   data() {
     return {
+      radio: '1',
+      radio1: '1',
+      radio3: '1',
+      radio4: '1',
+      checkList:[],
       value1: true,
       value2: true,
       value3: false,
@@ -75,7 +115,7 @@ export default {
       value5: false,
       value6: false,
       imgUrl: '',
-      activeName:'first',
+      activeName: 'first',
       valueLabel1: '开关1成功',
       valueLabel2: '开关2成功',
       valueLabel3: '开关3失败',
@@ -144,6 +184,10 @@ export default {
     changeFile(file, fileList) {
       this.imgUrl = window.URL.createObjectURL(file.raw)
     },
+    handlePreview() {},
+    handleRemove() {},
+    beforeRemove() {},
+    handleExceed() {},
   },
 }
 </script>
@@ -153,12 +197,12 @@ export default {
   width: 100%;
   height: 100%;
   .left {
-    width: 15%;
+    width: 20%;
     height: 100%;
-    border-right:1px solid black;
+    border-right: 1px solid black;
     // background-color: green;
-    .el-tabs {
-        margin-left:20px;
+    .demo-tabs {
+      margin-left: 20px;
       .switch {
         display: flex;
         flex-direction: column;
@@ -175,5 +219,8 @@ export default {
 }
 .demo-img {
   width: 500px;
+}
+.mg-top-20 {
+  margin-top: 20px;
 }
 </style>
